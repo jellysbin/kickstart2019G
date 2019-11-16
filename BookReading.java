@@ -1,9 +1,7 @@
-package tested;
-
 import java.util.*;
 
-public class BookReading {
-	static int page(int N,Vector M,int r) {
+public class BookReading{
+	public static int page(int N,Vector<Integer> M,int r) {
 
 		int p =r;
 		int y =0;
@@ -21,7 +19,7 @@ public class BookReading {
 		// TODO Auto-generated method stub
 		Scanner input = new Scanner(System.in);
 		Vector<Integer> M = new Vector<Integer>();
-		
+		HashMap<Integer, Integer> out = new HashMap<Integer,Integer>();
 		int T = input.nextInt();
 		if (T>100) {
 			T=100;
@@ -29,9 +27,9 @@ public class BookReading {
 		for (int x = 1;x<=T;x++) {
 			input.nextLine();
 			int y=0;
-			int N = input.nextInt();//페이지수
-			int tor = input.nextInt(); //찟긴수
-			int Q = input.nextInt(); //독자수
+			int N = input.nextInt();//PAGE
+			int tor = input.nextInt(); //TORN
+			int Q = input.nextInt(); //READER;
 			
 			for (int i = 0;i<tor;i++) {
 				int m = input.nextInt();
@@ -42,8 +40,19 @@ public class BookReading {
 				int r = input.nextInt();
 				y += page(N,M,r);
 			}
-			System.out.println("Case #"+x+":"+y);
+			input.nextLine();
+			out.put(x, y);
+			
+			
 			M.clear();
+		}
+		input.close();
+		Set<Integer> keys = out.keySet();
+		Iterator<Integer> it = keys.iterator();
+		while(it.hasNext()) {
+			int x = it.next();
+			int y = out.get(x);
+			System.out.println("Case #"+x+": "+y);
 		}
 		
 	}
